@@ -1,0 +1,167 @@
+/**
+ * CablecastCG Theme Variables
+ * Based on ui/app/styles/base/_cablecast-colors.scss
+ */
+
+:root {
+  /* Brand Colors */
+  --brand-green: #2cb466;
+
+  /* Gray Scale */
+  --gray-darkest: #4b4b5e;
+  --gray-darker: #5b5b6b;
+  --gray-dark: #777784;
+  --gray: #9f9fa5;
+  --gray-light: #cdcdd3;
+  --gray-lighter: #e8e8ef;
+  --gray-lightest: #f8f8fa;
+
+  /* Status Colors */
+  --color-ok: var(--brand-green);
+  --color-error: #811C1E;
+  --color-in-progress: #F05722;
+  --color-selection: #D8E3E9;
+  --color-on-air: #3192c8;
+
+  /* Editor Specific */
+  --editor-bg: var(--gray-lightest);
+  --editor-canvas-bg: #ffffff;
+  --editor-toolbar-bg: var(--gray-darker);
+  --editor-toolbar-text: #ffffff;
+  --editor-panel-bg: #ffffff;
+  --editor-panel-border: var(--gray-lighter);
+
+  /* Interactive Elements */
+  --input-bg: #ffffff;
+  --input-border: var(--gray-light);
+  --input-border-focus: var(--brand-green);
+  --input-text: var(--gray-darkest);
+  --input-placeholder: var(--gray);
+
+  /* Buttons */
+  --button-primary-bg: var(--brand-green);
+  --button-primary-text: #ffffff;
+  --button-primary-hover: #249e5a;
+  --button-secondary-bg: var(--gray-lighter);
+  --button-secondary-text: var(--gray-darkest);
+  --button-secondary-hover: var(--gray-light);
+  --button-danger-bg: var(--color-error);
+  --button-danger-text: #ffffff;
+
+  /* Selection & Focus */
+  --selection-color: var(--brand-green);
+  --selection-bg: rgba(44, 180, 102, 0.1);
+  --focus-ring: 0 0 0 2px var(--brand-green);
+  --focus-ring-offset: 0 0 0 4px rgba(44, 180, 102, 0.3);
+
+  /* Canvas */
+  --canvas-checker-light: #f0f0f0;
+  --canvas-checker-dark: #e0e0e0;
+  --canvas-snap-guide: var(--brand-green);
+  --canvas-block-selected: var(--brand-green);
+  --canvas-block-hover: rgba(44, 180, 102, 0.5);
+  --canvas-resize-handle: var(--brand-green);
+  --canvas-resize-handle-size: 10px;
+
+  /* Typography */
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Consolas', monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+
+  /* Transitions */
+  --transition-fast: 100ms ease;
+  --transition-base: 150ms ease;
+  --transition-slow: 300ms ease;
+
+  /* Z-Index */
+  --z-canvas-block: 10;
+  --z-canvas-selected: 20;
+  --z-snap-guides: 30;
+  --z-toolbar: 100;
+  --z-panel: 100;
+  --z-modal: 200;
+  --z-tooltip: 300;
+}
+
+/* Global Resets */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--gray-darkest);
+  background: var(--editor-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus Visible */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

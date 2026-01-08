@@ -1,0 +1,241 @@
+/**
+ * Property Panel Styles
+ */
+
+/* ============================================
+   Property Panel Container
+   ============================================ */
+
+.propertyPanel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--editor-panel-border);
+  background: var(--gray-lightest);
+}
+
+.panelTitle {
+  margin: 0;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--gray-darkest);
+}
+
+.blockType {
+  font-size: var(--font-size-sm);
+  color: var(--gray);
+  font-weight: var(--font-weight-normal);
+}
+
+.panelBody {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: var(--space-lg);
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: var(--space-xl);
+  text-align: center;
+  color: var(--gray);
+}
+
+.emptyStateIcon {
+  font-size: 48px;
+  margin-bottom: var(--space-md);
+  opacity: 0.5;
+}
+
+.emptyStateText {
+  font-size: var(--font-size-base);
+}
+
+/* ============================================
+   Property Section (Collapsible)
+   ============================================ */
+
+.section {
+  border-bottom: 1px solid var(--editor-panel-border);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-md);
+  border: none;
+  background: transparent;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--gray-darkest);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.sectionHeader:hover {
+  background: var(--gray-lightest);
+}
+
+.sectionHeader:focus-visible {
+  outline: none;
+  box-shadow: inset var(--focus-ring);
+}
+
+.sectionIcon {
+  flex-shrink: 0;
+  width: 16px;
+  font-size: 10px;
+  color: var(--gray);
+  transition: transform var(--transition-base);
+}
+
+.sectionIcon.expanded {
+  transform: rotate(90deg);
+}
+
+.sectionTitle {
+  flex: 1;
+}
+
+.sectionContent {
+  display: none;
+  padding: 0 var(--space-md) var(--space-md);
+}
+
+.sectionContent.expanded {
+  display: block;
+}
+
+/* ============================================
+   Property Grid Layouts
+   ============================================ */
+
+.propertyGrid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+/* Two columns for position/size */
+.propertyGrid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+/* Three columns for style toggles */
+.propertyGrid3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-sm);
+}
+
+/* Single row with flex */
+.propertyRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.propertyRowSpaced {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+/* ============================================
+   Toggle Button (Bold, Italic, etc.)
+   ============================================ */
+
+.toggleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-md);
+  background: var(--input-bg);
+  font-size: var(--font-size-md);
+  color: var(--gray-dark);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.toggleButton:hover:not(:disabled) {
+  background: var(--gray-lightest);
+  border-color: var(--gray);
+}
+
+.toggleButton.active {
+  background: var(--brand-green);
+  border-color: var(--brand-green);
+  color: white;
+}
+
+.toggleButton:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.toggleButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   Delete Button
+   ============================================ */
+
+.deleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  width: 100%;
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--button-danger-bg);
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--button-danger-bg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.deleteButton:hover:not(:disabled) {
+  background: var(--button-danger-bg);
+  color: var(--button-danger-text);
+}
+
+.deleteButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--button-danger-bg);
+}
+
+/* ============================================
+   Mobile Responsive
+   ============================================ */
+
+@media (max-width: 768px) {
+  .propertyGrid2 {
+    grid-template-columns: 1fr;
+  }
+}

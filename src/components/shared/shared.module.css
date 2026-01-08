@@ -1,0 +1,423 @@
+/**
+ * Shared form component styles
+ */
+
+/* ============================================
+   Common Styles
+   ============================================ */
+
+.label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--gray-dark);
+  margin-bottom: var(--space-xs);
+}
+
+.labelInline {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--gray-darkest);
+  cursor: pointer;
+}
+
+/* ============================================
+   Numeric Input
+   ============================================ */
+
+.numericInput {
+  display: flex;
+  flex-direction: column;
+}
+
+.numericInputGroup {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-md);
+  background: var(--input-bg);
+  overflow: hidden;
+}
+
+.numericInputGroup:focus-within {
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 2px rgba(44, 180, 102, 0.15);
+}
+
+.numericInputField {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-sm);
+  border: none;
+  background: transparent;
+  font-size: var(--font-size-sm);
+  text-align: center;
+  color: var(--input-text);
+}
+
+.numericInputField:focus {
+  outline: none;
+}
+
+.numericButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: var(--gray-lighter);
+  color: var(--gray-darker);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.numericButton:hover:not(:disabled) {
+  background: var(--gray-light);
+}
+
+.numericButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.numericUnit {
+  padding-right: var(--space-sm);
+  font-size: var(--font-size-xs);
+  color: var(--gray);
+}
+
+/* ============================================
+   Slider
+   ============================================ */
+
+.slider {
+  display: flex;
+  flex-direction: column;
+}
+
+.sliderContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.sliderTrack {
+  flex: 1;
+  height: 6px;
+  background: var(--gray-lighter);
+  border-radius: var(--radius-full);
+  position: relative;
+}
+
+.sliderFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--brand-green);
+  border-radius: var(--radius-full);
+  pointer-events: none;
+}
+
+.sliderInput {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+  margin: 0;
+}
+
+.sliderThumb {
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border: 2px solid var(--brand-green);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.sliderTrack:focus-within .sliderThumb {
+  box-shadow: var(--focus-ring);
+}
+
+.sliderValue {
+  min-width: 40px;
+  font-size: var(--font-size-sm);
+  color: var(--gray-darkest);
+  text-align: right;
+}
+
+/* ============================================
+   Select
+   ============================================ */
+
+.select {
+  display: flex;
+  flex-direction: column;
+}
+
+.selectInput {
+  padding: var(--space-sm) var(--space-md);
+  padding-right: 32px;
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-md);
+  background: var(--input-bg);
+  font-size: var(--font-size-sm);
+  color: var(--input-text);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239f9fa5' d='M2 4l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.selectInput:focus {
+  outline: none;
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 2px rgba(44, 180, 102, 0.15);
+}
+
+.selectInput:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   Color Picker
+   ============================================ */
+
+.colorPicker {
+  display: flex;
+  flex-direction: column;
+}
+
+.colorPickerRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.colorSwatch {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--gray-light);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+
+.colorSwatch:hover {
+  border-color: var(--gray-dark);
+}
+
+.colorSwatch:focus-within {
+  border-color: var(--input-border-focus);
+  box-shadow: var(--focus-ring);
+}
+
+/* Checkerboard background for transparency */
+.colorSwatchBg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(45deg, #ccc 25%, transparent 25%),
+    linear-gradient(-45deg, #ccc 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #ccc 75%),
+    linear-gradient(-45deg, transparent 75%, #ccc 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0;
+}
+
+.colorSwatchColor {
+  position: absolute;
+  inset: 0;
+}
+
+.colorInput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.colorHexInput {
+  flex: 1;
+  padding: var(--space-sm);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family-mono);
+  text-transform: uppercase;
+  color: var(--input-text);
+}
+
+.colorHexInput:focus {
+  outline: none;
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 2px rgba(44, 180, 102, 0.15);
+}
+
+/* ============================================
+   Button Group
+   ============================================ */
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonGroupButtons {
+  display: flex;
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.buttonGroupButton {
+  flex: 1;
+  padding: var(--space-sm) var(--space-md);
+  border: none;
+  border-right: 1px solid var(--input-border);
+  background: var(--input-bg);
+  font-size: var(--font-size-sm);
+  color: var(--gray-dark);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.buttonGroupButton:last-child {
+  border-right: none;
+}
+
+.buttonGroupButton:hover:not(:disabled) {
+  background: var(--gray-lightest);
+}
+
+.buttonGroupButton.active {
+  background: var(--brand-green);
+  color: white;
+}
+
+.buttonGroupButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.buttonGroupButton:focus-visible {
+  z-index: 1;
+  box-shadow: var(--focus-ring);
+}
+
+/* Icon variant - square buttons */
+.buttonGroupIcon .buttonGroupButton {
+  flex: 0 0 auto;
+  padding: var(--space-sm);
+  min-width: 32px;
+}
+
+/* ============================================
+   Checkbox
+   ============================================ */
+
+.checkbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  cursor: pointer;
+}
+
+.checkboxInput {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkboxBox {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--input-border);
+  border-radius: var(--radius-sm);
+  background: var(--input-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.checkboxInput:checked + .checkboxBox {
+  background: var(--brand-green);
+  border-color: var(--brand-green);
+}
+
+.checkboxInput:focus-visible + .checkboxBox {
+  box-shadow: var(--focus-ring);
+}
+
+.checkboxCheck {
+  display: none;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.checkboxInput:checked + .checkboxBox .checkboxCheck {
+  display: block;
+}
+
+.checkboxLabel {
+  font-size: var(--font-size-sm);
+  color: var(--gray-darkest);
+}
+
+/* ============================================
+   Text Input
+   ============================================ */
+
+.textInput {
+  display: flex;
+  flex-direction: column;
+}
+
+.textInputField {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  color: var(--input-text);
+  background: var(--input-bg);
+}
+
+.textInputField:focus {
+  outline: none;
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 2px rgba(44, 180, 102, 0.15);
+}
+
+.textInputField:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Textarea variant */
+.textInputField.textarea {
+  min-height: 80px;
+  resize: vertical;
+  font-family: inherit;
+}

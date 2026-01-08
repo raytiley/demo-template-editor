@@ -1,0 +1,278 @@
+/* Canvas container */
+.canvasWrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--editor-bg);
+  overflow: hidden;
+  padding: var(--space-lg);
+}
+
+/* Zoom controls */
+.zoomControls {
+  position: absolute;
+  bottom: var(--space-md);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background: var(--editor-panel-bg);
+  border: 1px solid var(--editor-panel-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xs);
+  box-shadow: var(--shadow-md);
+  z-index: var(--z-toolbar);
+}
+
+.zoomButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--gray-dark);
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.zoomButton:hover {
+  background: var(--gray-lighter);
+  color: var(--gray-darkest);
+}
+
+.zoomButton:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+.zoomLevel {
+  min-width: 50px;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--gray-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Template canvas */
+.canvas {
+  position: relative;
+  background: var(--editor-canvas-bg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  /* Checkerboard pattern for transparency */
+  background-image:
+    linear-gradient(45deg, var(--canvas-checker-light) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--canvas-checker-light) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--canvas-checker-light) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--canvas-checker-light) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+/* Background image */
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Blocks container */
+.blocksContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Individual block */
+.block {
+  position: absolute;
+  cursor: grab;
+  user-select: none;
+  transition: box-shadow var(--transition-fast);
+  touch-action: none; /* Prevent scrolling while dragging on touch */
+}
+
+.block:hover:not(.blockSelected) {
+  box-shadow: 0 0 0 2px var(--canvas-block-hover);
+}
+
+.block:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.blockSelected {
+  box-shadow: 0 0 0 2px var(--canvas-block-selected);
+  z-index: var(--z-canvas-selected) !important;
+}
+
+.blockDragging {
+  cursor: grabbing;
+  opacity: 0.9;
+}
+
+/* Block content (rendered image) */
+.blockContent {
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.blockLoading {
+  opacity: 0.5;
+}
+
+/* Block placeholder (when no image yet) */
+.blockPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gray-lighter);
+  color: var(--gray);
+  font-size: var(--font-size-sm);
+  border: 1px dashed var(--gray-light);
+}
+
+/* Selection overlay with resize handles */
+.selectionOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.resizeHandle {
+  position: absolute;
+  width: var(--canvas-resize-handle-size);
+  height: var(--canvas-resize-handle-size);
+  background: var(--canvas-resize-handle);
+  border: 2px solid white;
+  border-radius: 2px;
+  pointer-events: auto;
+  box-shadow: var(--shadow-sm);
+}
+
+.resizeHandle:hover {
+  transform: scale(1.2);
+}
+
+.handleE {
+  right: calc(var(--canvas-resize-handle-size) / -2);
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: e-resize;
+}
+
+.handleE:hover {
+  transform: translateY(-50%) scale(1.2);
+}
+
+.handleS {
+  bottom: calc(var(--canvas-resize-handle-size) / -2);
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: s-resize;
+}
+
+.handleS:hover {
+  transform: translateX(-50%) scale(1.2);
+}
+
+.handleSE {
+  right: calc(var(--canvas-resize-handle-size) / -2);
+  bottom: calc(var(--canvas-resize-handle-size) / -2);
+  cursor: se-resize;
+}
+
+/* Snap guides */
+.snapGuide {
+  position: absolute;
+  background: var(--canvas-snap-guide);
+  pointer-events: none;
+  z-index: var(--z-snap-guides);
+}
+
+.snapGuideH {
+  height: 1px;
+  left: 0;
+  right: 0;
+}
+
+.snapGuideV {
+  width: 1px;
+  top: 0;
+  bottom: 0;
+}
+
+/* Empty state */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--gray);
+  text-align: center;
+  padding: var(--space-xl);
+}
+
+.emptyStateIcon {
+  font-size: 48px;
+  margin-bottom: var(--space-md);
+  opacity: 0.5;
+}
+
+.emptyStateText {
+  font-size: var(--font-size-md);
+  margin-bottom: var(--space-sm);
+}
+
+.emptyStateHint {
+  font-size: var(--font-size-sm);
+  opacity: 0.7;
+}
+
+/* Keyboard shortcuts hint */
+.shortcutsHint {
+  position: absolute;
+  bottom: var(--space-md);
+  right: var(--space-md);
+  display: flex;
+  gap: var(--space-md);
+  font-size: var(--font-size-xs);
+  color: var(--gray);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.shortcutsHint span {
+  background: var(--editor-panel-bg);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--editor-panel-border);
+}
+
+/* Hide shortcuts on small screens */
+@media (max-width: 768px) {
+  .shortcutsHint {
+    display: none;
+  }
+}
