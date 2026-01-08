@@ -4,7 +4,7 @@ A React-based visual template editor prototype for digital signage content. This
 
 ## Live Demo
 
-Visit the live demo at: https://YOUR_USERNAME.github.io/demo-template-editor/
+Visit the live demo at: https://raytiley.github.io/demo-template-editor/
 
 ## Features
 
