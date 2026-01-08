@@ -39,7 +39,6 @@ export function PropertyPanel() {
 
   const blockType = selectedBlock.blockType;
   const isTextBlock = blockType === 'Text';
-  const isShapeBlock = blockType === 'Rectangle' || blockType === 'Ellipse';
   const isMediaBlock = blockType === 'Picture' || blockType === 'WebPicture' || blockType === 'Video';
 
   return (

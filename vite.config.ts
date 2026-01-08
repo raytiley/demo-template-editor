@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import type { IncomingMessage } from 'http'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -33,12 +34,13 @@ export default defineConfig({
         target: 'http://localhost',
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => {
+        rewrite: (path: string) => {
           // /api-proxy/https/host/path -> /path
           const match = path.match(/^\/api-proxy\/https?\/[^/]+(\/.*)/);
           return match ? match[1] : path;
         },
-        router: (req) => {
+        // Dynamic routing based on URL - router is valid http-proxy option
+        router: (req: IncomingMessage) => {
           // Extract target: /api-proxy/https/host/path -> https://host
           const match = req.url?.match(/^\/api-proxy\/(https?)\/([^/]+)/);
           if (match) {
@@ -46,7 +48,7 @@ export default defineConfig({
           }
           return 'http://localhost';
         },
-      },
+      } as Record<string, unknown>,
     },
   },
 })

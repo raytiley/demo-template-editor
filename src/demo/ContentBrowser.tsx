@@ -62,15 +62,16 @@ export function ContentBrowser() {
   useEffect(() => {
     if (!selectedZone) return;
 
+    const zoneId = selectedZone.id;
     async function fetchContent() {
       setContentLoading(true);
       setContentError(null);
       try {
         if (activeTab === 'templates') {
-          const data = await apiService.getTemplates(selectedZone.id);
+          const data = await apiService.getTemplates(zoneId);
           setTemplates(data);
         } else {
-          const data = await apiService.getBulletins(selectedZone.id);
+          const data = await apiService.getBulletins(zoneId);
           setBulletins(data);
         }
       } catch (err) {
